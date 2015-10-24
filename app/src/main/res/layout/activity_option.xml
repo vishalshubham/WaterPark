@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="waterpark.com.waterpark.OptionActivity"
+    android:background="@drawable/act_option"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button_browse"
+        android:text="@string/button_browse_parking"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:textColor="#27ae60"
+        android:layout_marginTop="115dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_button_white"/>
+
+    <Button
+        android:id="@+id/button_offer"
+        android:text="@string/button_offer_parking"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="240dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_button_green"/>
+
+</LinearLayout>

@@ -3,4 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_option">Choose</string>
+    <string name="button_browse_parking">Browse Parking</string>
+    <string name="button_offer_parking">Offer Your Parking</string>
 </resources>
