@@ -1,8 +1,13 @@
 package waterpark.com.waterpark;
 
 import android.app.Activity;
+import android.content.Context;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -18,16 +23,37 @@ import waterpark.com.waterpark.R;
 
 public class MainActivity extends Activity {
 
+    public static final String DEBUGTAG = "DEBUG_VC";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        double longitude = 0.0;
+        double latitude = 0.0;
+        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        try{
+            Criteria criteria = new Criteria();
+            String bestProvider = lm.getBestProvider(criteria, false);
+            Location location = lm.getLastKnownLocation(bestProvider);
+
+
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
+            Log.d(DEBUGTAG, "Longitude " + longitude);
+            Log.d(DEBUGTAG, "Latitude " + latitude);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+
+
         final GoogleMap mMap = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
 
         MarkerOptions mOptions = new MarkerOptions();
         mOptions.title("My place");
-        LatLng coordinate = new LatLng(43.4619415152536, -80.5222363389286);
+        //LatLng coordinate = new LatLng(43.4619415152536, -80.5222363389286);
+        LatLng coordinate = new LatLng(latitude, longitude);
         mOptions.position(coordinate);
 
         CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(coordinate, 12);

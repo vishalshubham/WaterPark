@@ -17,6 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/DEPENDENCIES'
+    }
 }
 
 dependencies {
@@ -26,4 +32,6 @@ dependencies {
     compile 'com.google.maps.android:android-maps-utils:0.3+'
     compile files('E:/Hackathons/WaterlooCodefest/WaterPark/lib/httpclient-4.0.jar')
     compile files('E:/Hackathons/WaterlooCodefest/WaterPark/lib/httpcore-4.0.1.jar')
+    compile files('E:/Java/Android/WaterPark/lib/httpclient-4.0.jar')
+    compile files('E:/Java/Android/WaterPark/lib/httpcore-4.0.1.jar')
 }
