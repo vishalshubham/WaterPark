@@ -90,10 +90,15 @@ public class ParkingFinder {
                     String desc = jObject.getString("description");
                     String lat = jObject.getString("latitude");
                     String lng = jObject.getString("longitude");
+                    String address = jObject.getString("address");
+
                     LatLng tempOb = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
 
                     temp.setLocation(tempOb);
                     temp.setDescription(desc);
+                    temp.setAddress(address);
+                    temp.setParkingType(vehicle);
+
                     allData.add(temp);
 
                 }

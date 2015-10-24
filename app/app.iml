@@ -124,6 +124,7 @@
     <orderEntry type="library" exported="" name="play-services-analytics-7.8.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-appindexing-7.8.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-appinvite-7.8.0" level="project" />
+    <orderEntry type="library" exported="" name="httpclient-4.0" level="project" />
     <orderEntry type="library" exported="" name="android-maps-utils-0.3.4" level="project" />
     <orderEntry type="library" exported="" name="play-services-safetynet-7.8.0" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.0.1" level="project" />
@@ -132,6 +133,7 @@
     <orderEntry type="library" exported="" name="play-services-base-7.8.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-fitness-7.8.0" level="project" />
+    <orderEntry type="library" exported="" name="httpcore-4.0.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-vision-7.8.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-nearby-7.8.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-location-7.8.0" level="project" />
@@ -141,23 +143,5 @@
     <orderEntry type="library" exported="" name="play-services-panorama-7.8.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-plus-7.8.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-maps-7.8.0" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/httpclient-4.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/httpcore-4.0.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
   </component>
 </module>
