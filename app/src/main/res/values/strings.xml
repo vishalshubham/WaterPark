@@ -6,5 +6,13 @@
     <string name="title_activity_option">Choose</string>
     <string name="button_browse_parking">Browse Parking</string>
     <string name="button_offer_parking">Offer Your Parking</string>
-    <string name="title_activity_browse_search">Search Location</string>
+    <string name="title_activity_browse_search">What do you want</string>
+    <string name="text_search">Search</string>
+    <string name="text_use_location">Use location</string>
+    <string name="text_search_hint">Search: Landmark, Address, PinCode</string>
+    <string name="text_choose_your_vehicle">Choose your vehicle</string>
+    <string name="text_date">Date</string>
+    <string name="text_tomorrow">Tomorrow</string>
+    <string name="text_today">Today</string>
+    <string name="text_when">When?</string>
 </resources>

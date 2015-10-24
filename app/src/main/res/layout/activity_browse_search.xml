@@ -1,10 +1,127 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="waterpark.com.waterpark.BrowseSearchActivity">
+    tools:context="waterpark.com.waterpark.BrowseSearchActivity"
+    android:orientation="vertical"
+    android:layout_gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:textSize="20dp"
+        android:textColor="#9f9f9f"
+        android:textStyle="bold"
+        android:text="@string/text_choose_your_vehicle"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
+
+        <CheckBox
+            android:id="@+id/id_check_bycycle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:drawableRight="@drawable/ic_bycycle"/>
+        <CheckBox
+            android:id="@+id/id_check_motorcycle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_motorcycle" />
+        <CheckBox
+            android:id="@+id/id_check_car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_car" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:textSize="20dp"
+        android:textColor="#9f9f9f"
+        android:textStyle="bold"
+        android:text="@string/text_when"/>
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center">
+        <RadioButton android:id="@+id/radio_pirates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9f9f9f"
+            android:checked="true"
+            android:text="@string/text_today"/>
+        <View
+            android:layout_width="50dp"
+            android:layout_height="10dp"/>
+        <RadioButton android:id="@+id/radio_ninjas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9f9f9f"
+            android:text="@string/text_tomorrow"/>
+    </RadioGroup>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="70dp"
+        android:background="#cccccc"/>
+
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="330dp"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_edittext"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:hint="@string/text_search_hint"/>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center">
+        <Button
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_button_green"
+            android:text="@string/text_search"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="15dp"
+            android:layout_height="20dp"/>
+
+        <Button
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_button_blue"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:textColor="#9f9f9f"
+            android:text="@string/text_use_location"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:drawableLeft="@drawable/ic_current_location"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -13,7 +13,8 @@
         android:textColor="#FFFFFF"
         android:layout_marginTop="115dp"
         android:layout_gravity="center"
-        android:background="@drawable/shape_button_green"/>
+        android:background="@drawable/shape_button_green"
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/button_offer"
@@ -23,6 +24,7 @@
         android:textColor="#27ae60"
         android:layout_marginTop="240dp"
         android:layout_gravity="center"
-        android:background="@drawable/shape_button_white"/>
+        android:background="@drawable/shape_button_white"
+        android:textStyle="bold"/>
 
 </LinearLayout>
