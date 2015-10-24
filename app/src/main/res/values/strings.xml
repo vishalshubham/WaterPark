@@ -6,4 +6,5 @@
     <string name="title_activity_option">Choose</string>
     <string name="button_browse_parking">Browse Parking</string>
     <string name="button_offer_parking">Offer Your Parking</string>
+    <string name="title_activity_browse_search">Search Location</string>
 </resources>

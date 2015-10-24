@@ -10,19 +10,19 @@
         android:text="@string/button_browse_parking"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:textColor="#27ae60"
+        android:textColor="#FFFFFF"
         android:layout_marginTop="115dp"
         android:layout_gravity="center"
-        android:background="@drawable/shape_button_white"/>
+        android:background="@drawable/shape_button_green"/>
 
     <Button
         android:id="@+id/button_offer"
         android:text="@string/button_offer_parking"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
+        android:textColor="#27ae60"
         android:layout_marginTop="240dp"
         android:layout_gravity="center"
-        android:background="@drawable/shape_button_green"/>
+        android:background="@drawable/shape_button_white"/>
 
 </LinearLayout>
