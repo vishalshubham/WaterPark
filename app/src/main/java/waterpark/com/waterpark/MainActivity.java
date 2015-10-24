@@ -14,6 +14,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import waterpark.com.waterpark.R;
+
 public class MainActivity extends Activity {
 
     @Override
