@@ -33,4 +33,6 @@
     <string name="text_next">Next</string>
     <string name="text_phone_eg">E.g. XXX-XXX-XXXX</string>
     <string name="text_name_eg">E.g. Jonh Snow</string>
+    <string name="getting_data">Loading data ...</string>
+    <string name="title_activity_main">Available Parking lots</string>
 </resources>
