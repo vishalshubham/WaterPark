@@ -56,6 +56,10 @@
             android:name=".PostPostedActivity"
             android:label="@string/title_activity_post_posted" >
         </activity>
+        <activity
+            android:name=".PostNotPostedActivity"
+            android:label="@string/title_activity_post_not_posted" >
+        </activity>
     </application>
 
 </manifest>

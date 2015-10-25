@@ -44,4 +44,5 @@
     <string name="text_terms"><![CDATA[*Terms & Conditions: The contents of this app, including without limitation, all data, information, text,
 graphics, links and other materials (collectively, the “Contents”), are provided as a
 convenience to our app users and are meant to be used for informational purposes only.]]></string>
+    <string name="title_activity_post_not_posted">Oops ...</string>
 </resources>
