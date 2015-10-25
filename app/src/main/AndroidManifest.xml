@@ -34,7 +34,7 @@
         <activity
             android:name=".OptionActivity"
             android:label="@string/title_activity_option" >
-            <intent-filter android:label="@string/app_name">
+            <intent-filter android:label="@string/app_name" >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -51,6 +51,10 @@
         <activity
             android:name=".PostDetailsActivity"
             android:label="@string/title_activity_post_details" >
+        </activity>
+        <activity
+            android:name=".PostPostedActivity"
+            android:label="@string/title_activity_post_posted" >
         </activity>
     </application>
 
