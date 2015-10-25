@@ -1,2 +1,4 @@
 mongoimport -d parking_db -c bicycle_parking --type csv --file BicycleParking.csv --headerline
 mongoimport -d parking_db -c city_parking_lot --type csv --file ParkingLots.csv --headerline
+
+mongoimport -d parking_db -c car_parking_temp --type json --file sample_good_parking_car.json --jsonArray
