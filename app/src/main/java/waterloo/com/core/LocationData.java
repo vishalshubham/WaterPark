@@ -9,7 +9,25 @@ public class LocationData {
     LatLng location;
     String Description;
     String Address;
-    int parkingType;
+    int ownershipType;
+    String capacity;
+    int vehicleTypes;
+
+    public int getVehicleTypes() {
+        return vehicleTypes;
+    }
+
+    public void setVehicleTypes(int vehicleTypes) {
+        this.vehicleTypes = vehicleTypes;
+    }
+
+    public String getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(String capacity) {
+        this.capacity = capacity;
+    }
 
     public String getDescription() {
         return Description;
@@ -35,12 +53,12 @@ public class LocationData {
         Address = address;
     }
 
-    public int getParkingType() {
-        return parkingType;
+    public int getOwnershipType() {
+        return ownershipType;
     }
 
-    public void setParkingType(int parkingType) {
-        this.parkingType = parkingType;
+    public void setOwnershipType(int parkingType) {
+        this.ownershipType = parkingType;
     }
 
 

@@ -1,18 +1,17 @@
 package waterloo.com.core;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.maps.android.SphericalUtil;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONObject;
+import com.google.gson.JsonArray;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -27,7 +26,8 @@ public class ParkingFinder {
         pf.setCurrentLocation(ob);
 
         LatLng nob = new LatLng(43.4689, 80.5400);
-        pf.passCriteria(nob);
+        System.out.println("hello");
+        pf.getResponsefromServer(Constants.BICYCLE);
 
     }
 
@@ -67,43 +67,60 @@ public class ParkingFinder {
 
     private ArrayList<LocationData> getResponsefromServer(int vehicle) {
         ArrayList<LocationData> allData = new ArrayList<LocationData>();
-        String vehicleInfo = null;
+        String vehicleInfo = getVehicle(vehicle);
 
-        HttpClient client = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet("http://cloud5.artstor.acit.com/get_weather/" + vehicleInfo);
+        //HttpClient client = new DefaultHttpClient();
+        //HttpGet httpGet = new HttpGet("http://ec2-52-26-80-237.us-west-2.compute.amazonaws.com/waterpark/rest/parking/" + vehicleInfo);
         try {
-            HttpResponse response = client.execute(httpGet);
-            HttpEntity entity = response.getEntity();
-            InputStream in = entity.getContent();
-            String aJsonString = null;
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"), 8);
-                StringBuilder sb = new StringBuilder();
-                String line = null;
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                JSONObject jObject = new JSONObject(sb.toString());
+            String url = "http://ec2-52-26-80-237.us-west-2.compute.amazonaws.com/waterpark/rest/parking/" + vehicleInfo;
+            URL obj = new URL(url);
+            HttpURLConnection client = (HttpURLConnection) obj.openConnection();
+            client.setRequestMethod("GET");
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream(), "UTF-8"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+            //System.out.println();
+            //sb.toString(
+            GsonBuilder builder = new GsonBuilder();
+            Gson gson = builder.create();
+            JsonArray jArray = gson.fromJson(sb.toString(), JsonArray.class);
+
+            for (int i = 0; i < jArray.size(); i++) {
+                JsonObject jObject = jArray.get(i).getAsJsonObject();
                 LocationData temp = new LocationData();
-                aJsonString = jObject.optString("description");
-                if (aJsonString != "" && aJsonString != "null") {
-                    String desc = jObject.getString("description");
-                    String lat = jObject.getString("latitude");
-                    String lng = jObject.getString("longitude");
-                    String address = jObject.getString("address");
+                String desc = jObject.get("description").getAsString();
+                String lat = jObject.get("latitude").getAsString();
+                String lng = jObject.get("longitude").getAsString();
+                String address = jObject.get("address").getAsString();
+                String capacity = jObject.get("capacity").getAsString();
+                String ownershipType = jObject.get("ownershipType").getAsString();
 
-                    LatLng tempOb = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
+                String mcAllowed;
+                if (vehicleInfo.equalsIgnoreCase("carbike")) {
+                    mcAllowed = jObject.get("motorcycleAllowed").getAsString();
+                    if (mcAllowed.equalsIgnoreCase("Y"))
+                        temp.setVehicleTypes(Constants.MOTOR_CYCLE | Constants.CAR);
+                    else
+                        temp.setVehicleTypes(Constants.CAR);
+                } else
+                    temp.setVehicleTypes(Constants.BICYCLE);
 
-                    temp.setLocation(tempOb);
-                    temp.setDescription(desc);
-                    temp.setAddress(address);
-                    temp.setParkingType(vehicle);
 
-                    allData.add(temp);
+                LatLng tempOb = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
 
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+                temp.setCapacity(capacity);
+                temp.setLocation(tempOb);
+                temp.setDescription(desc);
+                temp.setAddress(address);
+                temp.setOwnershipType(matchParking(ownershipType));
+
+
+                allData.add(temp);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -112,6 +129,24 @@ public class ParkingFinder {
         return null;
     }
 
+    private int matchParking(String parkingType) {
+        if (parkingType.equalsIgnoreCase("PRIVATE"))
+            return Constants.PRIVATE_PARKING;
+        else
+            return Constants.PUBLIC_PARKING;
+    }
+
+    private String getVehicle(int vehicle) {
+        switch (vehicle) {
+            case Constants.BICYCLE:
+                return "bicycle";
+            case Constants.CAR:
+                return "carbike";
+            default:
+                return "carbike";
+        }
+
+    }
 
     public LatLng getCurrentLocation() {
         return currentLocation;

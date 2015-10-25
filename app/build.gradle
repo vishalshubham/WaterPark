@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.0"
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "waterpark.com.waterpark"
@@ -29,9 +30,8 @@ dependencies {
     compile 'com.google.android.gms:play-services:7.8.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'org.apache.commons:commons-lang3:3.4'
     compile 'com.google.maps.android:android-maps-utils:0.3+'
-    compile files('E:/Hackathons/WaterlooCodefest/WaterPark/lib/httpclient-4.0.jar')
-    compile files('E:/Hackathons/WaterlooCodefest/WaterPark/lib/httpcore-4.0.1.jar')
-    compile files('E:/Java/Android/WaterPark/lib/httpclient-4.0.jar')
-    compile files('E:/Java/Android/WaterPark/lib/httpcore-4.0.1.jar')
+    compile 'org.apache.httpcomponents:httpcore:4.4.3'
+    compile 'com.google.code.gson:gson:2.4'
 }
