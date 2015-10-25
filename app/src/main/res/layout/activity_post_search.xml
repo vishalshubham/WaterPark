@@ -148,11 +148,11 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center">
         <Button
-            android:id="@+id/id_button_search"
+            android:id="@+id/id_button_post"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_button_green"
-            android:text="@string/text_search"
+            android:text="@string/text_post"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"/>

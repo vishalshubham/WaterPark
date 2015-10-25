@@ -3,9 +3,11 @@ package waterpark.com.waterpark;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -50,23 +52,32 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         final int vehicle = getIntent().getExtras().getInt("vehicle", 2);
+        final int searchType = getIntent().getExtras().getInt("searchType", 2);
 
         double longitude = 0.0;
         double latitude = 0.0;
-        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        try{
-            Criteria criteria = new Criteria();
-            String bestProvider = lm.getBestProvider(criteria, false);
-            Location location = lm.getLastKnownLocation(bestProvider);
 
-            longitude = location.getLongitude();
-            latitude = location.getLatitude();
-            Log.d(DEBUGTAG, "Longitude " + longitude);
-            Log.d(DEBUGTAG, "Latitude " + latitude);
-        }catch(Exception ex){
-            ex.printStackTrace();
+        if(searchType == 1){
+            longitude = getIntent().getExtras().getDouble("longitude");
+            latitude = getIntent().getExtras().getDouble("latitude");
+            Log.d(DEBUGTAG, "Longitude for 1: " + longitude);
+            Log.d(DEBUGTAG, "Latitude for 1: " + latitude);
         }
+        else{
+            LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+            try{
+                Criteria criteria = new Criteria();
+                String bestProvider = lm.getBestProvider(criteria, false);
+                Location location = lm.getLastKnownLocation(bestProvider);
 
+                longitude = location.getLongitude();
+                latitude = location.getLatitude();
+                Log.d(DEBUGTAG, "Longitude for 2: " + longitude);
+                Log.d(DEBUGTAG, "Latitude for 2: " + latitude);
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+        }
         final GoogleMap mMap = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
 
         final LatLng coordinate = new LatLng(latitude, longitude);                                     //LatLng coordinate = new LatLng(43.4619415152536, -80.5222363389286);
@@ -101,55 +112,32 @@ public class MainActivity extends Activity {
 
         locationData = bulkData.getBulkData();
         Log.d(DEBUGTAG, "Size: " + locationData.size());
-        for(LocationData locData : locationData){
+        for(final LocationData locData : locationData){
             MarkerOptions mOptions = new MarkerOptions();
             mOptions.title(locData.getAddress());
-            mOptions.snippet(locData.getDescription());
+            mOptions.snippet("SELECT");
             mOptions.position(locData.getLocation());
+            mOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
             mMap.addMarker(mOptions);
             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(Marker marker) {
-                    Toast.makeText(MainActivity.this, marker.getSnippet(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, marker.getTitle() + " clicked", Toast.LENGTH_LONG).show();
                     return false;
                 }
             });
             mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                 @Override
                 public void onInfoWindowClick(Marker marker) {
-                    Toast.makeText(MainActivity.this, "Clicked Info Window: " + marker.getSnippet(), Toast.LENGTH_LONG).show();
+
+                    Toast.makeText(MainActivity.this, "Selected " + marker.getTitle() + " \n Coordinates: " + marker.getPosition().latitude + ", " + marker.getPosition().longitude, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=" + marker.getPosition().latitude + "," + marker.getPosition().longitude));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                 }
             });
         }
         CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(coordinate, 16);
         mMap.animateCamera(yourLocation);
-
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-
-                MarkerOptions newMarker = new MarkerOptions();
-                newMarker.position(latLng);
-                newMarker.title("My Marker");
-                newMarker.snippet("My whole address" + latLng.longitude + latLng.latitude);
-                newMarker.draggable(true);
-                newMarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-                mMap.addMarker(newMarker);
-                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                    @Override
-                    public boolean onMarkerClick(Marker marker) {
-                        Toast.makeText(MainActivity.this, marker.getSnippet(), Toast.LENGTH_LONG).show();
-                        return false;
-                    }
-                });
-                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                    @Override
-                    public void onInfoWindowClick(Marker marker) {
-                        Toast.makeText(MainActivity.this, "Clicked Info Window: " + marker.getSnippet(), Toast.LENGTH_LONG).show();
-                    }
-                });
-
-            }
-        });
     }
 }

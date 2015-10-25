@@ -23,6 +23,7 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
+        android:singleLine="true"
         android:hint="@string/text_name_eg"/>
 
     <TextView
@@ -43,6 +44,7 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
+        android:singleLine="true"
         android:hint="@string/text_address_eg"/>
 
     <TextView
@@ -63,6 +65,7 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
+        android:singleLine="true"
         android:hint="@string/text_email_eg"/>
 
     <TextView
@@ -83,6 +86,8 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
+        android:singleLine="true"
+        android:phoneNumber="true"
         android:hint="@string/text_phone_eg"/>
 
     <LinearLayout
