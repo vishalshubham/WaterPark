@@ -7,11 +7,41 @@ import com.google.android.gms.maps.model.LatLng;
  */
 public class LocationData {
     LatLng location;
+
     String Description;
     String Address;
+    String name;
+    String email;
+    String contact_Num;
+
     int ownershipType;
     String capacity;
     int vehicleTypes;
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContact_Num() {
+        return contact_Num;
+    }
+
+    public void setContact_Num(String contact_Num) {
+        this.contact_Num = contact_Num;
+    }
 
     public int getVehicleTypes() {
         return vehicleTypes;
