@@ -22,31 +22,31 @@ public class ParkingFinder {
 
     public static void main(String arg[]) {
         ParkingFinder pf = new ParkingFinder();
-        LatLng ob = new LatLng(43.4639, 80.5253);
+        LatLng ob = new LatLng(43.4639, -80.5253);
         pf.setCurrentLocation(ob);
 
-        LatLng nob = new LatLng(43.4689, 80.5400);
+        LatLng nob = new LatLng(43.4689, -80.5400);
         System.out.println("hello");
-        pf.getResponsefromServer(Constants.BICYCLE);
+        pf.getParkingArea(nob, Constants.BICYCLE);
+        System.out.print(pf.getParkingArea(nob, Constants.BICYCLE));
 
     }
 
     LatLng currentLocation;
-    ArrayList<LocationData> locationData;
 
-    public ArrayList<LatLng> getParkingArea(LatLng latlng, int vehicle) {
+    public ArrayList<LocationData> getParkingArea(LatLng latlng, int vehicle) {
         setCurrentLocation(latlng);
-        populateParkingData(vehicle);
-        return null;
+        return populateParkingData(vehicle);
     }
 
-    private void populateParkingData(int vehicle) {
+    private ArrayList<LocationData> populateParkingData(int vehicle) {
         ArrayList<LocationData> temp = getResponsefromServer(vehicle);
-        refineLocationData(temp);
+        return refineLocationData(temp);
 
     }
 
-    private void refineLocationData(ArrayList<LocationData> temp) {
+    private ArrayList<LocationData> refineLocationData(ArrayList<LocationData> temp) {
+        ArrayList<LocationData> locationData = new ArrayList<LocationData>();
         Iterator<LocationData> iterator = temp.iterator();
         while (iterator.hasNext()) {
             LocationData tempLoc = iterator.next();
@@ -54,7 +54,7 @@ public class ParkingFinder {
                 locationData.add(tempLoc);
 
         }
-
+        return locationData;
     }
 
     private boolean passCriteria(LatLng location) {
@@ -126,7 +126,7 @@ public class ParkingFinder {
             e.printStackTrace();
         }
 
-        return null;
+        return allData;
     }
 
     private int matchParking(String parkingType) {

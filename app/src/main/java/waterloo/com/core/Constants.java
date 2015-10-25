@@ -9,5 +9,5 @@ public class Constants {
     public static final int MOTOR_CYCLE = 3;
     public static final int PUBLIC_PARKING = 4;
     public static final int PRIVATE_PARKING = 5;
-    public static final double radius = (double) 1000.0;
+    public static final double radius = 1000.0d;
 }
