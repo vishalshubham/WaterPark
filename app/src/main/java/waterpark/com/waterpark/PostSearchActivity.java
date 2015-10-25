@@ -1,10 +1,13 @@
 package waterpark.com.waterpark;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class PostSearchActivity extends Activity {
 
@@ -12,6 +15,20 @@ public class PostSearchActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_search);
+
+        String name = getIntent().getExtras().getString("name","");
+        String addr = getIntent().getExtras().getString("addr","");
+        String email = getIntent().getExtras().getString("email","");
+        String phone = getIntent().getExtras().getString("phone","");
+
+        Button buttonPost = (Button)findViewById(R.id.id_button_post);
+        buttonPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PostSearchActivity.this, PostPostedActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override

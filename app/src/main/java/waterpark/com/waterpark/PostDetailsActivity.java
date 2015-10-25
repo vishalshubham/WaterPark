@@ -37,6 +37,10 @@ public class PostDetailsActivity extends Activity {
                 else{
                     Log.d(DEBUGTAG, "Starting PostSearchActivity");
                     Intent i = new Intent(PostDetailsActivity.this, PostSearchActivity.class);
+                    i.putExtra("name", textName.getText());
+                    i.putExtra("addr", textAddr.getText());
+                    i.putExtra("email", textEmail.getText());
+                    i.putExtra("phone", textPhone.getText());
                     startActivity(i);
                 }
             }

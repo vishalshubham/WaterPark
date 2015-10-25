@@ -35,5 +35,13 @@
     <string name="text_name_eg">E.g. Jonh Snow</string>
     <string name="getting_data">Loading data ...</string>
     <string name="title_activity_main">Available Parking lots</string>
-    <string name="title_activity_post_posted">PostPostedActivity</string>
+    <string name="title_activity_post_posted">Parking Posted</string>
+    <string name="text_correct_message">Great! Your parking has been</string>
+    <string name="text_incorrect_message">Sorry! Your parking was not</string>
+    <string name="text_post">Post Parking</string>
+    <string name="text_posted_message">Posted</string>
+    <string name="text_not_posted_message">Not Posted</string>
+    <string name="text_terms"><![CDATA[*Terms & Conditions: The contents of this app, including without limitation, all data, information, text,
+graphics, links and other materials (collectively, the “Contents”), are provided as a
+convenience to our app users and are meant to be used for informational purposes only.]]></string>
 </resources>
