@@ -19,14 +19,14 @@ public class LocationData {
     int ownershipType;
     String capacity;
     int vehicleTypes;
-    String isCarBikeParking;
+    Boolean isCarBikeParking;
     Boolean isBicycleParking;
 
-    public String getIsCarBikeParking() {
+    public Boolean getIsCarBikeParking() {
         return isCarBikeParking;
     }
 
-    public void setIsCarBikeParking(String isCarBikeParking) {
+    public void setIsCarBikeParking(Boolean isCarBikeParking) {
         this.isCarBikeParking = isCarBikeParking;
     }
 
