@@ -22,8 +22,8 @@
     <string name="text_0_0">0.0</string>
     <string name="text_0">0</string>
     <string name="text_capacity">Capacity</string>
-    <string name="text_start_date">Start Date</string>
-    <string name="text_end_date">End Date</string>
+    <string name="text_start_date">YYYY-MM-DD</string>
+    <string name="text_end_date">YYYY-MM-DD</string>
     <string name="text_owner_name">Your Name</string>
     <string name="text_address">Your Address</string>
     <string name="text_address_eg">E.g. Suite No, Street Name, City, State</string>

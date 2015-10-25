@@ -83,13 +83,14 @@
         android:gravity="center"
         android:hint="@string/text_0"/>
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center"
         android:layout_marginTop="20dp">
         <TextView
+            android:id="@+id/textView_start_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -101,6 +102,7 @@
             android:layout_width="45dp"
             android:layout_height="10dp"/>
         <TextView
+            android:id="@+id/textView_end_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -108,7 +110,7 @@
             android:textColor="#9f9f9f"
             android:textStyle="bold"
             android:text="@string/text_end_date"/>
-    </LinearLayout>
+    </LinearLayout>-->
 
 
     <LinearLayout
@@ -118,6 +120,7 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center">
         <EditText
+            android:id="@+id/id_start_date"
             android:layout_width="110dp"
             android:layout_height="40dp"
             android:background="@drawable/shape_edittext"
@@ -131,6 +134,7 @@
             android:layout_height="10dp"/>
 
         <EditText
+            android:id="@+id/id_end_date"
             android:layout_width="110dp"
             android:layout_height="40dp"
             android:background="@drawable/shape_edittext"
