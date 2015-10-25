@@ -11,3 +11,4 @@ public class Constants {
     public static final int PRIVATE_PARKING = 5;
     public static final double radius = 1000.0d;
 }
+

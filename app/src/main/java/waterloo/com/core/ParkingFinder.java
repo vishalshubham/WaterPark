@@ -20,6 +20,9 @@ import java.util.Iterator;
  */
 public class ParkingFinder {
 
+    public static final String BICYCLE = "bicycle";
+    public static final String CARBIKE = "carbike";
+    
     public static void main(String arg[]) {
         ParkingFinder pf = new ParkingFinder();
         LatLng ob = new LatLng(43.4639, -80.5253);
@@ -103,7 +106,7 @@ public class ParkingFinder {
                 if (vehicleInfo.equalsIgnoreCase("carbike")) {
                     mcAllowed = jObject.get("motorcycleAllowed").getAsString();
                     if (mcAllowed.equalsIgnoreCase("Y"))
-                        temp.setVehicleTypes(Constants.MOTOR_CYCLE | Constants.CAR);
+                        temp.setVehicleTypes(Constants.MOTOR_CYCLE);
                     else
                         temp.setVehicleTypes(Constants.CAR);
                 } else
@@ -139,11 +142,11 @@ public class ParkingFinder {
     private String getVehicle(int vehicle) {
         switch (vehicle) {
             case Constants.BICYCLE:
-                return "bicycle";
+                return BICYCLE;
             case Constants.CAR:
-                return "carbike";
+                return CARBIKE;
             default:
-                return "carbike";
+                return CARBIKE;
         }
 
     }
