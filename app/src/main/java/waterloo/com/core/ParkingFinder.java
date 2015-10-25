@@ -35,12 +35,21 @@ public class ParkingFinder {
         ob1.setLocation(nob);
         ob1.setVehicleTypes(1);
         ob1.setDescription("dsfafafssafdf");
-        ob1.setAddress("295 glen");
+        ob1.setAddress("165 glen");
         ob1.setStartDate("2015-10-01");
         ob1.setEndDate("2015-10-05");
+        ob1.setIsBicycleParking(false);
+        ob1.setIsCarBikeParking("true");
+        ob1.setMotorcycleAllowed("Y");
+        ob1.setOwnershipType(1);
+        ob1.setAmountPerDay(7.0f);
+        ob1.setCapacity("2");
+
+
+
         //pf.getParkingArea(nob, Constants.BICYCLE);
         System.out.print(pf.getParkingArea(nob, Constants.BICYCLE));
-        //pf.postParkingInfo(ob1, 1);
+        pf.postParkingInfo(ob1);
 
     }
 
@@ -138,12 +147,66 @@ public class ParkingFinder {
 
                 allData.add(temp);
 
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return allData;
+        return getDataFromWatServer(allData);
+    }
+
+    private ArrayList<LocationData> getDataFromWatServer(ArrayList<LocationData> allData) {
+        {
+            try {
+                LocationData temp = new LocationData();
+                String url = "https://api.uwaterloo.ca/v2/parking/watpark.json?key=adf160317a8e94131e83197ddfbafa99";
+                URL watUrl = new URL(url);
+
+                HttpURLConnection client = (HttpURLConnection) watUrl.openConnection();
+                client.setRequestMethod("GET");
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream(), "UTF-8"), 8);
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                GsonBuilder builder = new GsonBuilder();
+                Gson gson = builder.create();
+
+                JsonObject obj = gson.fromJson(sb.toString(), JsonObject.class);
+                JsonArray jArray = obj.get("data").getAsJsonArray();
+
+                //JsonArray elem = obj.get("results").getAsJsonArray();
+                for(int i=0;i<jArray.size();i++) {
+                    JsonObject data = jArray.get(i).getAsJsonObject();
+                    String Description = data.get("lot_name").getAsString();
+                    String lat = data.get("latitude").getAsString();
+                    String lng = data.get("longitude").getAsString();
+                    String capacity = data.get("capacity").getAsString();
+                    //String current_count = data.get("current_count").getAsString();
+                    //String percent_filled = data.get("percent_filled").getAsString();
+                    //String last_updated = data.get("last_updated").getAsString();
+
+                    LatLng tempOb = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
+
+                    temp.setAddress("200 University Avenue : " + Description);
+                    temp.setLocation(tempOb);
+                    temp.setDescription("200 University Avenue : " + Description);
+                    temp.setCapacity(capacity);
+                    temp.setOwnershipType(Constants.PRIVATE_PARKING);
+
+                    allData.add(temp);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return allData;
+        }
     }
 
     private int matchParking(String parkingType) {
@@ -182,6 +245,9 @@ public class ParkingFinder {
             HttpURLConnection client = (HttpURLConnection) obj.openConnection();
             client.setRequestMethod("POST");
 
+            client.setRequestProperty("Content-Type", "application/json");
+            client.setRequestProperty("Accept", "application/json");
+
             String urlParameters = locationData.toString();
 
             client.setDoOutput(true);
@@ -207,7 +273,7 @@ public class ParkingFinder {
 
             //print result
             System.out.println(response.toString());
-
+        return true;
 
         } catch (Exception e) {
             e.printStackTrace();
