@@ -11,13 +11,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import android.location.Location;
+import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 
 import waterpark.com.waterpark.R;
 
@@ -34,6 +42,21 @@ public class MainActivity extends Activity {
         double latitude = 0.0;
         LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         try{
+
+
+
+
+/*            public void onConnected(Bundle bundle) {
+                mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+                if (mLastLocation != null) {
+                    locationInfo = mLastLocation.getLatitude() + "," + mLastLocation.getLongitude();
+                }
+                else {
+                    Log.d(TAG, "Unable to get Location");
+                }
+                mHandler.sendEmptyMessage(weather);
+            }*/
+
             Criteria criteria = new Criteria();
             String bestProvider = lm.getBestProvider(criteria, false);
             Location location = lm.getLastKnownLocation(bestProvider);
@@ -66,7 +89,24 @@ public class MainActivity extends Activity {
                 MarkerOptions newMarker = new MarkerOptions();
                 newMarker.position(latLng);
                 newMarker.title("My Marker");
+                newMarker.snippet("My whole address" + latLng.longitude + latLng.latitude);
+                newMarker.draggable(true);
+                newMarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
                 mMap.addMarker(newMarker);
+                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        Toast.makeText(MainActivity.this, marker.getSnippet(), Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+                });
+
+                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                    @Override
+                    public void onInfoWindowClick(Marker marker) {
+                        Toast.makeText(MainActivity.this, "Clicked Info Window: " + marker.getSnippet(), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
     }

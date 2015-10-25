@@ -1,11 +1,12 @@
 package waterpark.com.waterpark;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class PostSearchActivity extends AppCompatActivity {
+public class PostSearchActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

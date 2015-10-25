@@ -17,6 +17,7 @@ public class OptionActivity extends Activity {
         setContentView(R.layout.activity_option);
 
         Button browseButton = (Button)findViewById(R.id.button_browse);
+        Button postButton = (Button)findViewById(R.id.button_post);
 
         browseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,6 +26,14 @@ public class OptionActivity extends Activity {
                 startActivity(i);
             }
         });
+        postButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(OptionActivity.this, PostDetailsActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override

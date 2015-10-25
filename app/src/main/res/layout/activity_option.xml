@@ -17,7 +17,7 @@
         android:textStyle="bold"/>
 
     <Button
-        android:id="@+id/button_offer"
+        android:id="@+id/button_post"
         android:text="@string/button_offer_parking"
         android:layout_width="220dp"
         android:layout_height="wrap_content"

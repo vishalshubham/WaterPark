@@ -30,18 +30,18 @@
             android:layout_marginLeft="35dp"
             android:layout_gravity="center">
             <RadioButton
-                android:id="@+id/id_check_bycycle"
+                android:id="@+id/id_rad_bycycle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:drawableRight="@drawable/ic_bycycle"/>
             <RadioButton
-                android:id="@+id/id_check_motorcycle"
+                android:id="@+id/id_rad_motorcycle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/ic_motorcycle" />
             <RadioButton
-                android:id="@+id/id_check_car"
+                android:id="@+id/id_rad_car"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/ic_car" />

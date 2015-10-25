@@ -1,12 +1,178 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="waterpark.com.waterpark.PostSearchActivity">
+    android:layout_height="match_parent"
+    tools:context="waterpark.com.waterpark.PostSearchActivity"
+    android:orientation="vertical"
+    android:layout_gravity="center">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColor="#9f9f9f"
+        android:textStyle="bold"
+        android:text="@string/text_parking_for_vehicle"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp">
+
+
+            <CheckBox
+                android:id="@+id/id_check_bycycle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:drawableRight="@drawable/ic_bycycle"/>
+            <CheckBox
+                android:id="@+id/id_check_motorcycle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_motorcycle" />
+            <CheckBox
+                android:id="@+id/id_check_car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_car" />
+            <View
+                android:layout_width="50dp"
+                android:layout_height="10dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColor="#9f9f9f"
+        android:textStyle="bold"
+        android:text="@string/text_amount"/>
+
+    <EditText
+        android:layout_width="330dp"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_edittext"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:hint="@string/text_0_0"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColor="#9f9f9f"
+        android:textStyle="bold"
+        android:text="@string/text_capacity"/>
+
+    <EditText
+        android:layout_width="330dp"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_edittext"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:hint="@string/text_0"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:textColor="#9f9f9f"
+            android:textStyle="bold"
+            android:text="@string/text_start_date"/>
+        <View
+            android:layout_width="45dp"
+            android:layout_height="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:textColor="#9f9f9f"
+            android:textStyle="bold"
+            android:text="@string/text_end_date"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center">
+        <EditText
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_edittext"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:hint="@string/text_start_date"/>
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="10dp"/>
+
+        <EditText
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_edittext"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:hint="@string/text_end_date"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/id_button_search"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_button_green"
+            android:text="@string/text_search"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="15dp"
+            android:layout_height="20dp"/>
+
+        <Button
+            android:id="@+id/id_button_current_location"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_button_blue"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:textColor="#9f9f9f"
+            android:text="@string/text_use_location"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:drawableLeft="@drawable/ic_current_location"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+</LinearLayout>

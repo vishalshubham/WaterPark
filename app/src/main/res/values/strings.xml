@@ -15,5 +15,22 @@
     <string name="text_tomorrow">Tomorrow</string>
     <string name="text_today">Today</string>
     <string name="text_when">When?</string>
-    <string name="title_activity_post_search">PostSearchActivity</string>
+    <string name="title_activity_post_search">Post your parking</string>
+    <string name="text_parking_for_vehicle">Parking available for</string>
+    <string name="title_activity_post_details">Parking Owner details</string>
+    <string name="text_amount">Amount(CAD/day)</string>
+    <string name="text_0_0">0.0</string>
+    <string name="text_0">0</string>
+    <string name="text_capacity">Capacity</string>
+    <string name="text_start_date">Start Date</string>
+    <string name="text_end_date">End Date</string>
+    <string name="text_owner_name">Your Name</string>
+    <string name="text_address">Your Address</string>
+    <string name="text_address_eg">E.g. Suite No, Street Name, City, State</string>
+    <string name="text_email">Your Email</string>
+    <string name="text_email_eg">E.g. abc@xyz.com</string>
+    <string name="text_phone">Contact No</string>
+    <string name="text_next">Next</string>
+    <string name="text_phone_eg">E.g. XXX-XXX-XXXX</string>
+    <string name="text_name_eg">E.g. Jonh Snow</string>
 </resources>
