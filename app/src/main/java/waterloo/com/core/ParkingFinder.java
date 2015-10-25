@@ -29,7 +29,7 @@ public class ParkingFinder {
         LatLng ob = new LatLng(43.4639, -80.5253);
         pf.setCurrentLocation(ob);
 
-        LatLng nob = new LatLng(43.4689, -80.5400);
+        LatLng nob = new LatLng(47.0297103, -65.4625936);
         System.out.println("hello");
         LocationData ob1 = new LocationData();
         ob1.setLocation(nob);
@@ -39,17 +39,16 @@ public class ParkingFinder {
         ob1.setStartDate("2015-10-01");
         ob1.setEndDate("2015-10-05");
         ob1.setIsBicycleParking(false);
-        ob1.setIsCarBikeParking("true");
+        ob1.setIsCarBikeParking(true);
         ob1.setMotorcycleAllowed("Y");
         ob1.setOwnershipType(1);
         ob1.setAmountPerDay(7.0f);
         ob1.setCapacity("2");
 
 
-
-        //pf.getParkingArea(nob, Constants.BICYCLE);
+        pf.getParkingArea(nob, Constants.BICYCLE);
         System.out.print(pf.getParkingArea(nob, Constants.BICYCLE));
-        pf.postParkingInfo(ob1);
+        //pf.postParkingInfo(ob1);
 
     }
 
@@ -119,6 +118,13 @@ public class ParkingFinder {
                 String address = jObject.get("address").getAsString();
                 String capacity = jObject.get("capacity").getAsString();
                 String ownershipType = jObject.get("ownershipType").getAsString();
+                String id = jObject.get("id").getAsString();
+
+                if(ownershipType.equalsIgnoreCase("PRIVATE")){
+                    temp.setEmail(jObject.get("ownerEmail").getAsString());
+                    temp.setContact_Num(jObject.get("ownerPhone").getAsString());
+                    temp.setAmountPerDay(Float.parseFloat(jObject.get("amountPerDay").getAsString()));
+                }
 
                 String mcAllowed;
                 if (vehicleInfo.equalsIgnoreCase("carbike")) {
@@ -143,6 +149,7 @@ public class ParkingFinder {
                 temp.setDescription(desc);
                 temp.setAddress(address);
                 temp.setOwnershipType(matchParking(ownershipType));
+                temp.setId(id);
 
 
                 allData.add(temp);
@@ -181,7 +188,7 @@ public class ParkingFinder {
                 JsonArray jArray = obj.get("data").getAsJsonArray();
 
                 //JsonArray elem = obj.get("results").getAsJsonArray();
-                for(int i=0;i<jArray.size();i++) {
+                for (int i = 0; i < jArray.size(); i++) {
                     JsonObject data = jArray.get(i).getAsJsonObject();
                     String Description = data.get("lot_name").getAsString();
                     String lat = data.get("latitude").getAsString();
@@ -236,6 +243,53 @@ public class ParkingFinder {
         this.currentLocation = currentLocation;
     }
 
+
+    public boolean postBookingInfo(LocationData locationData) {
+        String postUrl = "http://ec2-52-26-80-237.us-west-2.compute.amazonaws.com/waterpark/rest/parking/book";
+        URL obj = null;
+        try {
+            obj = new URL(postUrl);
+
+            HttpURLConnection client = (HttpURLConnection) obj.openConnection();
+            client.setRequestMethod("POST");
+
+            client.setRequestProperty("Content-Type", "application/json");
+            client.setRequestProperty("Accept", "application/json");
+
+            String urlParameters = locationData.toString();
+
+            client.setDoOutput(true);
+            DataOutputStream wr = new DataOutputStream(client.getOutputStream());
+            wr.writeBytes(urlParameters.toString());
+            wr.flush();
+            wr.close();
+
+            int responseCode = client.getResponseCode();
+            System.out.println("\nSending 'POST' request to URL : " + postUrl);
+            System.out.println("Post parameters : " + urlParameters.toString());
+            System.out.println("Response Code : " + responseCode);
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(client.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            //print result
+            System.out.println(response.toString());
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+
+    }
+
     public boolean postParkingInfo(LocationData locationData) {
         String postUrl = "http://ec2-52-26-80-237.us-west-2.compute.amazonaws.com/waterpark/rest/parking/saveparking";
         URL obj = null;
@@ -273,7 +327,7 @@ public class ParkingFinder {
 
             //print result
             System.out.println(response.toString());
-        return true;
+            return true;
 
         } catch (Exception e) {
             e.printStackTrace();

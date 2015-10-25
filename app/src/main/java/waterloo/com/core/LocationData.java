@@ -8,6 +8,8 @@ import java.util.Date;
  * Created by Narula on 10/24/2015.
  */
 public class LocationData {
+
+    String id;
     LatLng location;
 
     String Description;
@@ -21,6 +23,14 @@ public class LocationData {
     int vehicleTypes;
     Boolean isCarBikeParking;
     Boolean isBicycleParking;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Boolean getIsCarBikeParking() {
         return isCarBikeParking;
@@ -170,6 +180,7 @@ public class LocationData {
                 ", \"motorcycleAllowed\":\"" + motorcycleAllowed + "\"" +
                 ", \"isBicycleParking\":\"" + isBicycleParking + "\"" +
                 ", \"isCarBikeParking\":\"" + isCarBikeParking + "\"" +
+                ", \"id\":\"" + id + "\"" +
                 '}';
     }
 }
