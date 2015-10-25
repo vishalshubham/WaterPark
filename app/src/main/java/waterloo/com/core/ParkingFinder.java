@@ -40,7 +40,7 @@ public class ParkingFinder {
         ob1.setEndDate("2015-10-05");
         //pf.getParkingArea(nob, Constants.BICYCLE);
         System.out.print(pf.getParkingArea(nob, Constants.BICYCLE));
-        pf.postParkingInfo(ob1, 1);
+        //pf.postParkingInfo(ob1, 1);
 
     }
 
@@ -173,8 +173,8 @@ public class ParkingFinder {
         this.currentLocation = currentLocation;
     }
 
-    public boolean postParkingInfo(LocationData locationData, int vehicle) {
-        String postUrl = "http://ec2-52-26-80-237.us-west-2.compute.amazonaws.com/waterpark/rest/parking/savecarbikeparking";
+    public boolean postParkingInfo(LocationData locationData) {
+        String postUrl = "http://ec2-52-26-80-237.us-west-2.compute.amazonaws.com/waterpark/rest/parking/saveparking";
         URL obj = null;
         try {
             obj = new URL(postUrl);

@@ -19,6 +19,26 @@ public class LocationData {
     int ownershipType;
     String capacity;
     int vehicleTypes;
+    String isCarBikeParking;
+    Boolean isBicycleParking;
+
+    public String getIsCarBikeParking() {
+        return isCarBikeParking;
+    }
+
+    public void setIsCarBikeParking(String isCarBikeParking) {
+        this.isCarBikeParking = isCarBikeParking;
+    }
+
+    public Boolean getIsBicycleParking() {
+        return isBicycleParking;
+    }
+
+    public void setIsBicycleParking(Boolean isBicycleParking) {
+        this.isBicycleParking = isBicycleParking;
+    }
+
+
 
     public float getAmountPerDay() {
         return amountPerDay;
@@ -148,6 +168,8 @@ public class LocationData {
                 ", \"endDate\":\"" + endDate + "\"" +
                 ", \"amountPerDay\":\"" + amountPerDay + "\"" +
                 ", \"motorcycleAllowed\":\"" + motorcycleAllowed + "\"" +
+                ", \"isBicycleParking\":\"" + isBicycleParking + "\"" +
+                ", \"isCarBikeParking\":\"" + isCarBikeParking + "\"" +
                 '}';
     }
 }
