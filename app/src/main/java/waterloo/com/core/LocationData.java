@@ -2,6 +2,8 @@ package waterloo.com.core;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.Date;
+
 /**
  * Created by Narula on 10/24/2015.
  */
@@ -18,6 +20,43 @@ public class LocationData {
     String capacity;
     int vehicleTypes;
 
+    public float getAmountPerDay() {
+        return amountPerDay;
+    }
+
+    public void setAmountPerDay(float amountPerDay) {
+        this.amountPerDay = amountPerDay;
+    }
+
+    float amountPerDay;
+
+    public String getMotorcycleAllowed() {
+        return motorcycleAllowed;
+    }
+
+    public void setMotorcycleAllowed(String motorcycleAllowed) {
+        this.motorcycleAllowed = motorcycleAllowed;
+    }
+
+    String motorcycleAllowed;
+
+    String startDate, endDate;
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
 
     public String getName() {
         return name;
@@ -92,4 +131,23 @@ public class LocationData {
     }
 
 
+    @Override
+    public String toString() {
+        return "{" +
+                "\"latitude\":\"" + location.latitude + "\"" +
+                ", \"longitude\":\"" + location.longitude + "\"" +
+                ", \"description\":\"" + Description + "\"" +
+                ", \"address\":\"" + Address + "\"" +
+                ", \"owner\":\"" + name + "\"" +
+                ", \"ownerEmail\":\"" + email + "\"" +
+                ", \"type\":\"" + "" + "\"" +
+                ", \"ownerPhone\":\"" + contact_Num + "\"" +
+                ", \"ownershipType\":\"" + ownershipType + "\"" +
+                ", \"capacity\":\"" + capacity + "\"" +
+                ", \"startDate\":\"" + startDate + "\"" +
+                ", \"endDate\":\"" + endDate + "\"" +
+                ", \"amountPerDay\":\"" + amountPerDay + "\"" +
+                ", \"motorcycleAllowed\":\"" + motorcycleAllowed + "\"" +
+                '}';
+    }
 }

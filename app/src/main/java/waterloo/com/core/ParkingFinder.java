@@ -9,6 +9,7 @@ import com.google.maps.android.SphericalUtil;
 import com.google.gson.JsonArray;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -22,7 +23,7 @@ public class ParkingFinder {
 
     public static final String BICYCLE = "bicycle";
     public static final String CARBIKE = "carbike";
-    
+
     public static void main(String arg[]) {
         ParkingFinder pf = new ParkingFinder();
         LatLng ob = new LatLng(43.4639, -80.5253);
@@ -30,8 +31,16 @@ public class ParkingFinder {
 
         LatLng nob = new LatLng(43.4689, -80.5400);
         System.out.println("hello");
-        pf.getParkingArea(nob, Constants.BICYCLE);
+        LocationData ob1 = new LocationData();
+        ob1.setLocation(nob);
+        ob1.setVehicleTypes(1);
+        ob1.setDescription("dsfafafssafdf");
+        ob1.setAddress("295 glen");
+        ob1.setStartDate("2015-10-01");
+        ob1.setEndDate("2015-10-05");
+        //pf.getParkingArea(nob, Constants.BICYCLE);
         System.out.print(pf.getParkingArea(nob, Constants.BICYCLE));
+        pf.postParkingInfo(ob1, 1);
 
     }
 
@@ -105,12 +114,17 @@ public class ParkingFinder {
                 String mcAllowed;
                 if (vehicleInfo.equalsIgnoreCase("carbike")) {
                     mcAllowed = jObject.get("motorcycleAllowed").getAsString();
-                    if (mcAllowed.equalsIgnoreCase("Y"))
+                    if (mcAllowed.equalsIgnoreCase("Y")) {
                         temp.setVehicleTypes(Constants.MOTOR_CYCLE);
-                    else
+                        temp.setMotorcycleAllowed("Y");
+                    } else {
                         temp.setVehicleTypes(Constants.CAR);
-                } else
+                        temp.setMotorcycleAllowed("N");
+                    }
+                } else {
                     temp.setVehicleTypes(Constants.BICYCLE);
+                    temp.setMotorcycleAllowed("N");
+                }
 
 
                 LatLng tempOb = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
@@ -158,5 +172,48 @@ public class ParkingFinder {
     public void setCurrentLocation(LatLng currentLocation) {
         this.currentLocation = currentLocation;
     }
+
+    public boolean postParkingInfo(LocationData locationData, int vehicle) {
+        String postUrl = "http://ec2-52-26-80-237.us-west-2.compute.amazonaws.com/waterpark/rest/parking/savecarbikeparking";
+        URL obj = null;
+        try {
+            obj = new URL(postUrl);
+
+            HttpURLConnection client = (HttpURLConnection) obj.openConnection();
+            client.setRequestMethod("POST");
+
+            String urlParameters = locationData.toString();
+
+            client.setDoOutput(true);
+            DataOutputStream wr = new DataOutputStream(client.getOutputStream());
+            wr.writeBytes(urlParameters.toString());
+            wr.flush();
+            wr.close();
+
+            int responseCode = client.getResponseCode();
+            System.out.println("\nSending 'POST' request to URL : " + postUrl);
+            System.out.println("Post parameters : " + urlParameters.toString());
+            System.out.println("Response Code : " + responseCode);
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(client.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            //print result
+            System.out.println(response.toString());
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
 }
