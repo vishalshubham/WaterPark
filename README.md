@@ -3,7 +3,7 @@
 This application was our submission to Waterloo Codefest Hackathon.
 
 This is a parking application which shows you various parking locations available near you.
-It also has the feature of allowing a user to post his/her drive way as a private parking available to others.
+It also has the feature of allowing a user to post his/her drive way as a private parking available to others. It also provides navigation once parking is selected.
 
 ##Screen 1: 
 Choose your option: Browse parking OR Post parking
